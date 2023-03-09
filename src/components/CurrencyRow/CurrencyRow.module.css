@@ -1,0 +1,45 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.input {
+  -moz-appearance: textfield;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.29);
+  border-radius: 20px;
+  font-weight: 900;
+  font-size: 60px;
+  text-align: right;
+  color: #ffffff;
+  border: 0;
+  outline: 0;
+  font-family: inherit;
+  width: 100%;
+  transition: border-color 0.3s;
+  border: 10px solid transparent;
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input:read-only {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.input:focus:not(:read-only) {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+select {
+  border-radius: 20px;
+  font-weight: 900;
+  font-size: 20px;
+  border: 0;
+  outline: 0;
+  margin-left: 0.5rem;
+  background: rgba(255, 255, 255, 0.29);
+}
