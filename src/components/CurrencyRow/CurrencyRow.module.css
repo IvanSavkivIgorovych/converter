@@ -26,11 +26,7 @@
   margin: 0;
 }
 
-.input:read-only {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.input:focus:not(:read-only) {
+.input:focus {
   border-color: rgba(255, 255, 255, 0.6);
 }
 
@@ -42,4 +38,14 @@ select {
   outline: 0;
   margin-left: 0.5rem;
   background: rgba(255, 255, 255, 0.29);
+}
+
+@media only screen and (max-width: 800px) {
+  .input {
+    font-size: 20px;
+  }
+
+  select {
+    font-size: 15px;
+  }
 }

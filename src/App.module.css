@@ -27,3 +27,9 @@ h1 {
 p {
   margin: 0;
 }
+
+@media only screen and (max-width: 800px) {
+  h1.header {
+    font-size: 18px;
+  }
+}

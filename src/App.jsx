@@ -67,7 +67,7 @@ function App() {
   }
   return (
     <>
-      <h1>
+      <h1 className={styles.header}>
         {exchangeRates.map(function (object, i) {
           return (
             <span key={i}>
