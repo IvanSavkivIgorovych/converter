@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import CurrencyRow from "./components/CurrencyRow/CurrencyRow";
+import round from "./components/helpers/round";
 import styles from "./App.module.css";
 
 const BASE_URL = "https://api.apilayer.com/exchangerates_data/latest";
@@ -45,6 +46,28 @@ function App() {
       .catch((error) => console.log("error", error));
   }, []);
 
+  // async function fetchData() {
+  //   try {
+  //     const response = await fetch(
+  //       `${BASE_URL}?symbols=USD,EUR,GBP,AED&base=UAH`,
+  //       requestOptions
+  //     );
+  //     const data = await response.json();
+  //     const firstCurrency = Object.keys(data.rates)[0];
+  //     setCurrencyOptions([data.base, ...Object.keys(data.rates)]);
+  //     setFromCurrency(data.base);
+  //     setToCurrency(firstCurrency);
+  //     setExchangeRate(data.rates[firstCurrency]);
+  //     setExchangeRates([...Object.values(data.rates)]);
+  //   } catch (error) {
+  //     console.log("error", error);
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
   useEffect(() => {
     if (fromCurrency != null && toCurrency != null) {
       fetch(
@@ -55,6 +78,25 @@ function App() {
         .then((data) => setExchangeRate(data.rates[toCurrency]));
     }
   }, [fromCurrency, toCurrency]);
+
+  // async function fetchData1() {
+  //   try {
+  //     if (fromCurrency != null && toCurrency != null) {
+  //       const response = await fetch(
+  //         `${BASE_URL}?symbols=${toCurrency}&base=${fromCurrency}`,
+  //         requestOptions
+  //       );
+  //       const data = await response.json();
+  //       setExchangeRate(data.rates[toCurrency]);
+  //     }
+  //   } catch (error) {
+  //     console.log("error", error);
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   fetchData1();
+  // }, [fromCurrency, toCurrency]);
 
   function handleFromAmountChange(e) {
     setAmount(e.target.value);
@@ -68,15 +110,19 @@ function App() {
   return (
     <>
       <h1 className={styles.header}>
-        {exchangeRates.map(function (object, i) {
-          return (
-            <span key={i}>
-              100 UAH = {object * 100}
-              {currencyOptions[i + 1]}
-              <br />
-            </span>
-          );
-        })}
+        {exchangeRates &&
+          exchangeRates.map(function (object, i) {
+            return (
+              currencyOptions.length > 0 &&
+              currencyOptions.length > 0 && (
+                <span key={i}>
+                  100 UAH = {round(object * 100, 4)}
+                  {currencyOptions[i + 1]}
+                  <br />
+                </span>
+              )
+            );
+          })}
       </h1>
       <CurrencyRow
         currencyOptions={currencyOptions}
